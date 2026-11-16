@@ -1,6 +1,6 @@
 // Starts the plugin's MCP server the way Copilot starts it, and asks it what it can do.
 //
-// Copilot reads plugins/kyte/.mcp.json and runs `command` with `args` in the environment it was
+// Copilot reads plugins/kyte/mcp.json and runs `command` with `args` in the environment it was
 // itself started in, plus whatever `env` names. This does the same, from the same file, so what
 // is checked here is what ships — not a second description of it that can drift.
 //
@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const pluginRoot = join(here, "..", "plugins", "kyte");
-const { mcpServers } = JSON.parse(readFileSync(join(pluginRoot, ".mcp.json"), "utf8"));
+const { mcpServers } = JSON.parse(readFileSync(join(pluginRoot, "mcp.json"), "utf8"));
 
 const [name, server] = Object.entries(mcpServers)[0];
 const env = { ...process.env, ...(server.env ?? {}) };

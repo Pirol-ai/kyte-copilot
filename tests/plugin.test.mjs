@@ -46,7 +46,7 @@ test("the plugin manifest says what the marketplace says", () => {
 });
 
 test("the server line starts kyte, in its own data folder", () => {
-  const { mcpServers } = readJson(PLUGIN, ".mcp.json");
+  const { mcpServers } = readJson(PLUGIN, "mcp.json");
   const names = Object.keys(mcpServers);
   assert.deepStrictEqual(names, ["kyte"], "one server, called kyte");
 
