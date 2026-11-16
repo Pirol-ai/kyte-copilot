@@ -63,6 +63,14 @@ the server by hand in `~/.copilot/mcp-config.json`:
 }
 ```
 
+## One thing to know if you change the manifest
+
+Copilot reads a plugin's MCP servers only from the older manifest shape. Give `plugin.json` an
+Agent Plugins 1.0 `$schema` and the server is dropped without a word: the plugin installs, the
+skill arrives, and `copilot mcp list` answers *No MCP servers configured*. So this manifest has no
+`$schema`, and it names the file outright with `"mcpServers": "./.mcp.json"`. Tested by hand
+against Copilot CLI 0.0.414; the test suite holds both conditions.
+
 ## What it runs, sends and stores
 
 - **Runs:** the `kyte` program on your own computer, as `kyte mcp`, in its own data folder.

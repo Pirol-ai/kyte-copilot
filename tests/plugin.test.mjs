@@ -42,11 +42,18 @@ test("the plugin manifest says what the marketplace says", () => {
   assert.match(manifest.version, /^\d+\.\d+\.\d+$/);
   assert.strictEqual(manifest.version, entry.version, "two versions that have to be one");
   assert.strictEqual(manifest.description, entry.description);
-  assert.ok(manifest.$schema.includes("agent-plugins.org"), "an Agent Plugins 1.0 manifest");
+
+  // Copilot reads a plugin's MCP servers only from the older manifest shape. Give the manifest an
+  // Agent Plugins 1.0 $schema and the server is silently dropped: the plugin installs, the skill
+  // arrives, and `copilot mcp list` says "No MCP servers configured". Checked by hand against
+  // 0.0.414 — see the note in README.
+  assert.ok(!manifest.$schema, "a $schema makes Copilot ignore the server");
+  assert.strictEqual(manifest.mcpServers, "./.mcp.json", "the manifest has to name the file");
+  assert.ok(existsSync(join(root, PLUGIN, ".mcp.json")), "and the file has to be there");
 });
 
 test("the server line starts kyte, in its own data folder", () => {
-  const { mcpServers } = readJson(PLUGIN, "mcp.json");
+  const { mcpServers } = readJson(PLUGIN, ".mcp.json");
   const names = Object.keys(mcpServers);
   assert.deepStrictEqual(names, ["kyte"], "one server, called kyte");
 
