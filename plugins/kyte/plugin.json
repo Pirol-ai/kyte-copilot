@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kyte",
+  "version": "0.1.0",
+  "description": "Your company's kyte workspace in Copilot: customers, contacts, deals, projects, hours, invoices, goals, people and documents — read and changed as you, under your permissions. Served by the kyte program on your own computer.",
+  "author": {
+    "name": "Pirol Labs",
+    "url": "https://pirol.ai"
+  },
+  "homepage": "https://kyte.pirol.ai",
+  "repository": "https://github.com/Pirol-ai/kyte-copilot",
+  "license": "MIT",
+  "keywords": ["kyte", "company os", "crm", "erp", "projects", "time tracking", "mcp"]
+}

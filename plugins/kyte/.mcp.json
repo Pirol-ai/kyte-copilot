@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "kyte": {
+      "type": "local",
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "exec \"${KYTE_PROGRAM:-kyte}\" mcp --db \"${KYTE_COPILOT_DB:-$HOME/.kyte/copilot}\""
+      ],
+      "tools": ["*"]
+    }
+  }
+}
